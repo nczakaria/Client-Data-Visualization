@@ -128,45 +128,45 @@ public class ContextActivity extends ListActivity {
     public void onResume() {
         super.onResume();
         
-        //TODO:: Bind to the service if it is not already running
-
-        
-        if(Context_Service.selected.size() > 0){
-        	if (adapter ==null){
-        		adapter = new ContextAdapter();
-        		setListAdapter(adapter);
-        	}
-            drawWidgets();
-        } else { // unset the listadapter so android doesn't draw a zero item list which throws an error
-	        widgets = new WidgetBase[STREAMS.values().length];
-        	setListAdapter(null);
-        	adapter = null;
-        }
-        
+//        //TODO:: Bind to the service if it is not already running
+//
+//        
+//        if(Context_Service.selected.size() > 0){
+//        	if (adapter ==null){
+//        		adapter = new ContextAdapter();
+//        		setListAdapter(adapter);
+//        	}
+//            drawWidgets();
+//        } else { // unset the listadapter so android doesn't draw a zero item list which throws an error
+//	        widgets = new WidgetBase[STREAMS.values().length];
+//        	setListAdapter(null);
+//        	adapter = null;
+//        }
+//        
     }
     
     private void drawWidgets(){
-    	List<Integer> selected = Context_Service.selected;
-    	for(int i : selected){
-    		switch(STREAMS.values()[i]){
-    			case ACTIVITY:
-    			    if (Context_Service.raw_activity_history == null) 
-    			   		Context_Service.raw_activity_history = new LinkedList<Integer>();
-    			   	widgets[i] = new ContextImageWidget(this,2,Context_Service.raw_activity_history);
-    			   	widgets[i].setTitle("Raw Activity: ");
-    			   	widgets[i].addOrRemoveTitleViewAsNecessary();
-    				break;
-//    			case VOICE:
-//    				//TODO::
+//    	List<Integer> selected = Context_Service.selected;
+//    	for(int i : selected){
+//    		switch(STREAMS.values()[i]){
+//    			case ACTIVITY:
+//    			    if (Context_Service.raw_activity_history == null) 
+//    			   		Context_Service.raw_activity_history = new LinkedList<Integer>();
+//    			   	widgets[i] = new ContextImageWidget(this,2,Context_Service.raw_activity_history);
+//    			   	widgets[i].setTitle("Raw Activity: ");
+//    			   	widgets[i].addOrRemoveTitleViewAsNecessary();
 //    				break;
-//    			case ACT1:
-//    			case ACT2:
-//    			case ACT3:
-//    				//TODO::
-//    				break;
-
-    		}
-    	}
+////    			case VOICE:
+////    				//TODO::
+////    				break;
+////    			case ACT1:
+////    			case ACT2:
+////    			case ACT3:
+////    				//TODO::
+////    				break;
+//
+//    		}
+//    	}
     }
 
     @Override
@@ -178,13 +178,17 @@ public class ContextActivity extends ListActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu items for use in the action bar
+    	// Inflate the menu items for use in the action bar
+		return mIsBound; //temp return value
+        
 
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
+    	// Handle presses on the action bar items
+		return mIsBound; //temp return value
+        
 
     }
     
@@ -204,6 +208,7 @@ public class ContextActivity extends ListActivity {
         @Override
         public int getCount() {
             return Context_Service.selected.size();
+
         }
  
         @Override
