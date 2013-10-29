@@ -13,6 +13,8 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
@@ -148,6 +150,9 @@ public class MainActivity extends Activity {
         //Set Layout
         setContentView(R.layout.main);
         
+        //add the visualization Button
+        final Button vizButton = (Button) findViewById(R.id.visualizeButton);
+        
         //Setting up text views
         statusView = (TextView) findViewById(R.id.StatusView);
         stepsView = (TextView) findViewById(R.id.StepCountView);
@@ -164,6 +169,9 @@ public class MainActivity extends Activity {
         	Intent cssBg = new Intent(activity,Context_Service.class);
     		startService(cssBg);
         }
+        
+        
+        
         
         
         //Bind to the service if it is already running
@@ -189,7 +197,7 @@ public class MainActivity extends Activity {
         		    }
         		}
         );
-        
+  
         
     }
     
