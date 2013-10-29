@@ -227,7 +227,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="30dp"
-        android:text="Visualize" />
+        android:text="@string/visualize" />
 
 
      </RelativeLayout>

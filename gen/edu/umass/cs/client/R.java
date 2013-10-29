@@ -44,6 +44,7 @@ public final class R {
          */
         public static final int status=0x7f040001;
         public static final int steps=0x7f040003;
+        public static final int visualize=0x7f040008;
         public static final int x=0x7f040005;
         public static final int y=0x7f040006;
         public static final int z=0x7f040007;
