@@ -27,9 +27,11 @@ public final class R {
         public static final int StepCountView=0x7f050004;
         public static final int StepsLayout=0x7f050003;
         public static final int TopHorizontalSpaceView=0x7f050000;
+        public static final int VisualizeLayout=0x7f050010;
         public static final int XView=0x7f050008;
         public static final int YView=0x7f05000a;
         public static final int ZView=0x7f05000c;
+        public static final int button1=0x7f050011;
     }
     public static final class layout {
         public static final int main=0x7f030000;
