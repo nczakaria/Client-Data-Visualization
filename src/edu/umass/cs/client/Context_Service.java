@@ -413,14 +413,104 @@ public class Context_Service extends Service implements SensorEventListener{
 	 * @return
 	 */
 
-
+	ArrayList<Double> xarray = new ArrayList<Double>();
+	ArrayList<Double> yarray = new ArrayList<Double>();
+	ArrayList<Double> zarray = new ArrayList<Double>();
+	double xmin = 0;
+	double xmax = 0;
+	double xthreshold = 0;
+	
+	double ymin = 0;
+	double ymax = 0;
+	double ythreshold = 0;
+	
+	double zmin = 0;
+	double zmax = 0;
+	double zthreshold = 0;
+	
+	double domThreshold = 0;
+	
+	/*
+	 * 
+	 * THIS IS JUNK AND DOES NOT WORK
+	 * Need to do this
+	 * https://docs.google.com/document/d/1SwVUFpxVqIgVm6_Ao4Ol3Rg8M6P5YvlGUK0mrNFeIxw/pub
+	 * 
+	 */
 
 	public int detectSteps(double filt_acc_x, double filt_acc_y,
 			double filt_acc_z) {
+
+		if (xarray.size() < 50){
+			xarray.add(filt_acc_x);
+			yarray.add(filt_acc_y);
+			zarray.add(filt_acc_z);
+			System.out.println("adding");
+		}
+		else{
+			double xtempMin = xarray.get(0);
+			double xtempMax = xarray.get(0);
+			
+			double ytempMin = yarray.get(0);
+			double ytempMax = yarray.get(0);
+			
+			double ztempMin = zarray.get(0);
+			double ztempMax = zarray.get(0);
+			for (int i = 0; i < xarray.size(); i++) {
+				if (xarray.get(i) < xtempMin){
+					xtempMin = xarray.get(i);
+				}
+				if (xarray.get(i) > xtempMax){
+					xtempMax = xarray.get(i);
+				}
+			}
+			xthreshold = (xtempMax+xtempMin/2);
+			
+			for (int i = 0; i < yarray.size(); i++) {
+				if (yarray.get(i) < ytempMin){
+					ytempMin = yarray.get(i);
+				}
+				if (yarray.get(i) > ytempMax){
+					ytempMax = yarray.get(i);
+				}
+			}
+			ythreshold = (ytempMax+ytempMax/2);
+			
+			for (int i = 0; i < zarray.size(); i++) {
+				if (zarray.get(i) < ztempMin){
+					ztempMin = zarray.get(i);
+				}
+				if (zarray.get(i) > ztempMax){
+					ztempMax = zarray.get(i);
+				}
+			}
+			
+			zthreshold = (ztempMax+ztempMax/2);
+			
+			if(xthreshold > zthreshold && xthreshold > ythreshold){
+				System.out.println("x is dom");
+				domThreshold = xthreshold;
+			}
+			else if(ythreshold > zthreshold && ythreshold > zthreshold){
+				System.out.println(" y is dom");
+				domThreshold = ythreshold;
+			}
+			else{
+				System.out.println("z is dom");
+				domThreshold = zthreshold;
+			}
+			
+		}
 		
+				
+		if (xarray.size() > 49 && filt_acc_x > domThreshold) {
+			System.out.println("a step?");
+			return 1;
+		}
+		
+		return 0;
 		
 
-		return 1;
 	}
 
 

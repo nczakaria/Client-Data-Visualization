@@ -156,14 +156,14 @@ public class MainActivity extends Activity {
         //typical use of push-button in an activity
         //provided code seemed to have an error in it...needed to add
         // "View." before onClickListner()
-        vizButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(),ContextActivity.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-				startActivity(intent);
-			}
-		});
+//        vizButton.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Intent intent = new Intent(getApplicationContext(),ContextActivity.class);
+//				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//				startActivity(intent);
+//			}
+//		});
         
         //Setting up text views
         statusView = (TextView) findViewById(R.id.StatusView);
