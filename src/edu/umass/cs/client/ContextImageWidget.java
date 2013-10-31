@@ -192,7 +192,7 @@ public class ContextImageWidget extends WidgetBase
     		int prevX = -1;
     		int prevY= -1;
     		for(Integer state : history){
-		    int y = 0; // TODO:: compute what the y coordinate has to be as a function of numStates,HEIGHT,state
+		    int y = (numStates*HEIGHT-HEIGHT/2)-state*HEIGHT; // TODO:: compute what the y coordinate has to be as a function of numStates,HEIGHT,state
 		    canvas.drawCircle(xoffset,y,DOT,paint);
 		    if (prevX >0  && prevY >0){
 		        canvas.drawLine(prevX, prevY, xoffset, y, paint);
