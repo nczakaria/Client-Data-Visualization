@@ -432,7 +432,7 @@ public class Context_Service extends Service implements SensorEventListener{
 	
 	/*
 	 * 
-	 * THIS IS JUNK AND DOES NOT WORK
+	 * THIS IS JUNK IS INCOMPLETE AND DOES NOT WORK
 	 * Need to do this
 	 * https://docs.google.com/document/d/1SwVUFpxVqIgVm6_Ao4Ol3Rg8M6P5YvlGUK0mrNFeIxw/pub
 	 * 
