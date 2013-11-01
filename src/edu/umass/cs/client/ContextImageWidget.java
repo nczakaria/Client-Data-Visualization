@@ -1,4 +1,4 @@
-package edu.umass.cs.client.widget;
+package edu.umass.cs.client;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +12,7 @@ import android.util.Log;
 import java.util.LinkedList;
 
 import edu.umass.cs.client.R;
+import edu.umass.cs.client.widget.WidgetBase;
 
 /**
  * ContextImageWidget.java
@@ -106,21 +107,21 @@ public class ContextImageWidget extends WidgetBase
     
     public void setImage(String label){
     	if(label.equals("STATIONARY")){
-    		image_view.setImageResource(R.drawable.stat);
+//    		image_view.setImageResource(R.drawable.stat);
     	} else if(label.equals("DRIVE")){
-    		image_view.setImageResource(R.drawable.drive);
+//    		image_view.setImageResource(R.drawable.drive);
     	} else if(label.equals("WALK")){
-    		image_view.setImageResource(R.drawable.walk);
+//    		image_view.setImageResource(R.drawable.walk);
     	}
     }
     
     public void setImage(int label){
     	if(label==0){
-    		image_view.setImageResource(R.drawable.stat);
+//    		image_view.setImageResource(R.drawable.stat);
     	} else if(label==2){
-    		image_view.setImageResource(R.drawable.drive);
+//    		image_view.setImageResource(R.drawable.drive);
     	} else if(label==1){
-    		image_view.setImageResource(R.drawable.walk);
+//    		image_view.setImageResource(R.drawable.walk);
     	}
     }
 
