@@ -106,21 +106,21 @@ public class ContextImageWidget extends WidgetBase
     
     public void setImage(String label){
     	if(label.equals("STATIONARY")){
-    		image_view.setImageResource(R.drawable.stat);
+//    		image_view.setImageResource(R.drawable.stat);
     	} else if(label.equals("DRIVE")){
-    		image_view.setImageResource(R.drawable.drive);
+//    		image_view.setImageResource(R.drawable.drive);
     	} else if(label.equals("WALK")){
-    		image_view.setImageResource(R.drawable.walk);
+//    		image_view.setImageResource(R.drawable.walk);
     	}
     }
     
     public void setImage(int label){
     	if(label==0){
-    		image_view.setImageResource(R.drawable.stat);
+//    		image_view.setImageResource(R.drawable.stat);
     	} else if(label==2){
-    		image_view.setImageResource(R.drawable.drive);
+//    		image_view.setImageResource(R.drawable.drive);
     	} else if(label==1){
-    		image_view.setImageResource(R.drawable.walk);
+//    		image_view.setImageResource(R.drawable.walk);
     	}
     }
 
@@ -192,7 +192,9 @@ public class ContextImageWidget extends WidgetBase
     		int prevX = -1;
     		int prevY= -1;
     		for(Integer state : history){
-		    int y = 0; // TODO:: compute what the y coordinate has to be as a function of numStates,HEIGHT,state
+//		    int y = 0; // TODO:: compute what the y coordinate has to be as a function of numStates,HEIGHT,state
+    			//below is from class 
+		    int y = (numStates * HEIGHT - HEIGHT/2) - state * HEIGHT;
 		    canvas.drawCircle(xoffset,y,DOT,paint);
 		    if (prevX >0  && prevY >0){
 		        canvas.drawLine(prevX, prevY, xoffset, y, paint);
