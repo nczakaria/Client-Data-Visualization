@@ -11,8 +11,6 @@ import android.graphics.Paint;
 import android.util.Log;
 import java.util.LinkedList;
 
-import edu.umass.cs.client.R;
-
 /**
  * ContextImageWidget.java
  */

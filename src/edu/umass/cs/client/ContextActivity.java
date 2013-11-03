@@ -43,6 +43,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 
 public class ContextActivity extends ListActivity {
 	
@@ -56,7 +57,9 @@ public class ContextActivity extends ListActivity {
     
     private static final String TAG = "ContextActivity";
 	
-	
+    //Action picker button
+    final Button actionPicker = (Button) findViewById(R.id.action_pick);
+    
 	// Datasource for the listview
     private ContextAdapter adapter;
     
@@ -113,6 +116,16 @@ public class ContextActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setListAdapter(null);
         
+     // launch the picker activity once the button is clicked
+        actionPicker.setOnClickListener(new View.OnClickListener() {
+    		@Override
+    		public void onClick(View v) {
+    			Intent intent = new Intent(getApplicationContext(),ContextActivity.class);
+    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    			startActivity(intent);
+    		}
+    	});
+        
 	//        View view = this.getWindow().getDecorView();
         //view.setBackgroundColor(Color.WHITE);
     }
@@ -128,6 +141,8 @@ public class ContextActivity extends ListActivity {
     @Override
     public void onResume() {
         super.onResume();
+        
+
         
         //TODO:: Bind to the service if it is not already running
         
@@ -147,6 +162,7 @@ public class ContextActivity extends ListActivity {
         }
         
     }
+    
     
     private void drawWidgets(){
     	List<Integer> selected = Context_Service.selected;
@@ -183,10 +199,13 @@ public class ContextActivity extends ListActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	// Inflate the menu items for use in the action bar
-		return mIsBound; //temp return value
-        
-
+//		return mIsBound; //temp return value
+    	MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
+    
+    
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

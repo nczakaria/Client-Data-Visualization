@@ -152,6 +152,7 @@ public class MainActivity extends Activity {
         
         //add the visualization Button
         final Button vizButton = (Button) findViewById(R.id.visualizeButton);
+                
         
 //        typical use of push-button in an activity
 //        provided code seemed to have an error in it...needed to add

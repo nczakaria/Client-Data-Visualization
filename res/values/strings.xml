@@ -10,6 +10,7 @@
     <string name="y">Y</string>
     <string name="z">Z</string>
     <string name="visualize">Visualize</string>
+    <string name="action_pick">Picker</string>
     
     
 </resources>
