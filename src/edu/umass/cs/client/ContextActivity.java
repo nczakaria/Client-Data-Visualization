@@ -209,10 +209,15 @@ public class ContextActivity extends ListActivity {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    	// Handle presses on the action bar items
-		return mIsBound; //temp return value
-        
-
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_pick:
+                //TODO:: launch picker activity
+//            	setContentView();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     
     private class ContextAdapter extends BaseAdapter {
