@@ -47,11 +47,10 @@ import android.widget.BaseAdapter;
 public class ContextActivity extends ListActivity {
 	
     public static enum STREAMS {ACTIVITY
-//									,VOICE
-//									,ACT1
+//									,STEPS
+//									,ACTIVITY
 //									,ACT2
 //									,ACT3
-// ,STEPS
 		};
     private WidgetBase[] widgets = new WidgetBase[STREAMS.values().length]; // Using a base-class makes it easier to serve different widgets in the listview
     
@@ -77,6 +76,9 @@ public class ContextActivity extends ListActivity {
     
     @SuppressLint("HandlerLeak")
 	class IncomingHandler extends Handler {
+    	
+    	//extend to accept step message
+    	
 	@Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -129,6 +131,8 @@ public class ContextActivity extends ListActivity {
         super.onResume();
         
         //TODO:: Bind to the service if it is not already running
+        
+        //register for updates
 
         
         if(Context_Service.selected.size() > 0){
@@ -172,6 +176,7 @@ public class ContextActivity extends ListActivity {
     @Override
     public void onPause() {
 	//TODO:: unregister updated and unbind from service
+    	//unregister to updates
         super.onPause();
     }    
     
