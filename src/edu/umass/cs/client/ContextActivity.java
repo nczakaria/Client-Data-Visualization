@@ -46,11 +46,11 @@ import android.widget.BaseAdapter;
 
 public class ContextActivity extends ListActivity {
 	
-    public static enum STREAMS {ACTIVITY
-//									,STEPS
-//									,ACTIVITY
-//									,ACT2
-//									,ACT3
+    public static enum STREAMS {     ACTIVITY
+									,STEPS
+									,ACT1
+									,ACT2
+									,ACT3
 		};
     private WidgetBase[] widgets = new WidgetBase[STREAMS.values().length]; // Using a base-class makes it easier to serve different widgets in the listview
     
@@ -71,7 +71,6 @@ public class ContextActivity extends ListActivity {
     
     private ServiceConnection mConnection; //TODO:: refer to MainActivity.java for the communication protocol with the background service
     // TODO:: when a connection is established subscribe to updates
-
 
     
     @SuppressLint("HandlerLeak")
