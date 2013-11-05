@@ -260,7 +260,7 @@ public class ContextActivity extends ListActivity {
             case R.id.action_pick:
                 //TODO:: launch picker activity
             	startActivity(new Intent(getApplicationContext(), PickerActivity.class));
-            	setContentView(R.menu.context_menu);
+//            	setContentView(R.menu.context_menu);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

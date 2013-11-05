@@ -55,15 +55,18 @@ public class PickerActivity extends ListActivity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 			    //TODO:: store the selected items 
-				
+				SparseBooleanArray sp = getListView().getCheckedItemPositions();
 				
 
                 //something about getCheckedItemIds
 			}
 			
         	
-        });                
+        });         
+        
 	//TODO:: preselect items if anything has previously been selected
+        //this is wrong
+        lv.setItemChecked(1, true);
         //i think setItemChecked
     }
     
