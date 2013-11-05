@@ -182,11 +182,7 @@ public class MainActivity extends Activity {
         	Intent cssBg = new Intent(activity,Context_Service.class);
     		startService(cssBg);
         }
-        
-        
-        
-        
-        
+                
         //Bind to the service if it is already running
         bindToServiceIfIsRunning();
         

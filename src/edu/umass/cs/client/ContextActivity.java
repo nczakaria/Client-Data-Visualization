@@ -70,7 +70,10 @@ public class ContextActivity extends ListActivity {
     private boolean mIsBound;
     //   Messenger receiving messages from the background service to update UI
     private final Messenger mMessenger = new Messenger(new IncomingHandler());
-
+    
+    
+    //create an instance of this activity
+    private ContextActivity activity;
     
     private ServiceConnection mConnection; //TODO:: refer to MainActivity.java for the communication protocol with the background service
     // TODO:: when a connection is established subscribe to updates
@@ -138,15 +141,43 @@ public class ContextActivity extends ListActivity {
     	
     }
     
+   
     @Override
     public void onResume() {
         super.onResume();
         
-
-        
         //TODO:: Bind to the service if it is not already running
+      //Start Background Service if not already started
+        if(!Context_Service.isRunning()) {
+        	Intent cssBg = new Intent(activity,Context_Service.class);
+    		startService(cssBg);
+    		
+        }
         
-        //register for updates
+        mConnection = new ServiceConnection() {
+            public void onServiceConnected(ComponentName className, IBinder service) {
+                mService = new Messenger(service);
+                mIsBound = true;
+                try {
+                    Message msg = Message.obtain(null, Context_Service.MSG_REGISTER_CLIENT);
+                    msg.replyTo = mMessenger;
+                    mService.send(msg);
+                } catch (RemoteException e) {
+                    // In this case the service has crashed before we could even do anything with it
+                }
+            }
+
+            public void onServiceDisconnected(ComponentName className) {
+                // This is called when the connection with the service has been unexpectedly disconnected - process crashed.
+            	mIsBound = false;
+                mService = null;
+            }
+        };
+        
+        
+        //Bind to the service if it is already running
+        bindService(new Intent(this, Context_Service.class), mConnection, Context.BIND_AUTO_CREATE);
+        
 
         
         if(Context_Service.selected.size() > 0){
@@ -193,6 +224,21 @@ public class ContextActivity extends ListActivity {
 	//TODO:: unregister updated and unbind from service
     	//unregister to updates
         super.onPause();
+        
+        if (mIsBound) {
+            // If we have received the service, and hence registered with it, then now is the time to unregister.
+            if (mService != null) {
+                try {
+                    Message msg = Message.obtain(null, Context_Service.MSG_UNREGISTER_CLIENT);
+                    msg.replyTo = mMessenger;
+                    mService.send(msg);
+                } catch (RemoteException e) {
+                    // There is nothing special we need to do if the service has crashed.
+                }
+            }
+            // Detach our existing connection.
+            unbindService(mConnection);
+        }
     }    
     
 
@@ -213,7 +259,8 @@ public class ContextActivity extends ListActivity {
         switch (item.getItemId()) {
             case R.id.action_pick:
                 //TODO:: launch picker activity
-//            	setContentView();
+            	startActivity(new Intent(getApplicationContext(), PickerActivity.class));
+            	setContentView(R.menu.context_menu);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -80,7 +80,11 @@ public class Context_Service extends Service implements SensorEventListener{
 	static Context_Service sInstance = null;
 	private static boolean isRunning = false;
 	private static boolean isAccelRunning = false;
+	
+	
 	private static final int NOTIFICATION_ID = 777;
+	
+	public static List<Integer> selected;
 
 	/**
 	 * Filter class required to filter noise from accelerometer
