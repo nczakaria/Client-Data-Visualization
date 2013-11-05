@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -84,7 +85,9 @@ public class Context_Service extends Service implements SensorEventListener{
 	
 	private static final int NOTIFICATION_ID = 777;
 	
+	//needed for ContextActivity class
 	public static List<Integer> selected;
+	public static LinkedList<Integer> raw_activity_history;
 
 	/**
 	 * Filter class required to filter noise from accelerometer
