@@ -185,7 +185,7 @@ public class ContextActivity extends ListActivity {
         		adapter = new ContextAdapter();
         		setListAdapter(adapter);
         	}
-            drawWidgets();
+//            drawWidgets();
         } else { // unset the listadapter so android doesn't draw a zero item list which throws an error
 	        widgets = new WidgetBase[STREAMS.values().length];
         	setListAdapter(null);
@@ -195,29 +195,29 @@ public class ContextActivity extends ListActivity {
     }
     
     
-    private void drawWidgets(){
-    	List<Integer> selected = Context_Service.selected;
-    	for(int i : selected){
-    		switch(STREAMS.values()[i]){
-    			case ACTIVITY:
-    			    if (Context_Service.raw_activity_history == null) 
-    			   		Context_Service.raw_activity_history = new LinkedList<Integer>();
-    			   	widgets[i] = new ContextImageWidget(this,2,Context_Service.raw_activity_history);
-    			   	widgets[i].setTitle("Raw Activity: ");
-    			   	widgets[i].addOrRemoveTitleViewAsNecessary();
-    				break;
-//    			case VOICE:
-//    				//TODO::
+//    private void drawWidgets(){
+//    	List<Integer> selected = Context_Service.selected;
+//    	for(int i : selected){
+//    		switch(STREAMS.values()[i]){
+//    			case ACTIVITY:
+//    			    if (Context_Service.raw_activity_history == null) 
+//    			   		Context_Service.raw_activity_history = new LinkedList<Integer>();
+//    			   	widgets[i] = new ContextImageWidget(this,2,Context_Service.raw_activity_history);
+//    			   	widgets[i].setTitle("Raw Activity: ");
+//    			   	widgets[i].addOrRemoveTitleViewAsNecessary();
 //    				break;
-//    			case ACT1:
-//    			case ACT2:
-//    			case ACT3:
-//    				//TODO::
-//    				break;
-
-    		}
-    	}
-    }
+////    			case VOICE:
+////    				//TODO::
+////    				break;
+////    			case ACT1:
+////    			case ACT2:
+////    			case ACT3:
+////    				//TODO::
+////    				break;
+//
+//    		}
+//    	}
+//    }
 
     @Override
     public void onPause() {

@@ -45,6 +45,7 @@
                 </action>
             </intent-filter>
         </receiver>
+        <activity android:name="ContextActivity"></activity>
         
     </application>
 
