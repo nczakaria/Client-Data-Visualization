@@ -58,7 +58,7 @@ public class ContextActivity extends ListActivity {
     private static final String TAG = "ContextActivity";
 	
     //Action picker button
-    final Button actionPicker = (Button) findViewById(R.id.action_pick);
+//    final Button actionPicker = (Button) findViewById(R.id.action_pick);
     
 	// Datasource for the listview
     private ContextAdapter adapter;
@@ -75,8 +75,9 @@ public class ContextActivity extends ListActivity {
     //create an instance of this activity
     private ContextActivity activity;
     
-    private ServiceConnection mConnection; //TODO:: refer to MainActivity.java for the communication protocol with the background service
+    //TODO:: refer to MainActivity.java for the communication protocol with the background service
     // TODO:: when a connection is established subscribe to updates
+    private ServiceConnection mConnection;
 
     
     @SuppressLint("HandlerLeak")
@@ -116,18 +117,19 @@ public class ContextActivity extends ListActivity {
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	Log.d("debug", "On Create");
         super.onCreate(savedInstanceState);
         setListAdapter(null);
         
      // launch the picker activity once the button is clicked
-        actionPicker.setOnClickListener(new View.OnClickListener() {
-    		@Override
-    		public void onClick(View v) {
-    			Intent intent = new Intent(getApplicationContext(),ContextActivity.class);
-    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-    			startActivity(intent);
-    		}
-    	});
+//        actionPicker.setOnClickListener(new View.OnClickListener() {
+//    		@Override
+//    		public void onClick(View v) {
+//    			Intent intent = new Intent(getApplicationContext(),ContextActivity.class);
+//    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//    			startActivity(intent);
+//    		}
+//    	});
         
 	//        View view = this.getWindow().getDecorView();
         //view.setBackgroundColor(Color.WHITE);
@@ -142,9 +144,17 @@ public class ContextActivity extends ListActivity {
     }
     
    
+    
+    
+    
     @Override
     public void onResume() {
+    	Log.d("debug", "OnResume");
         super.onResume();
+        
+        
+        //UPDATE widget list with items that are checked off.
+        
         
         //TODO:: Bind to the service if it is not already running
       //Start Background Service if not already started
@@ -153,14 +163,19 @@ public class ContextActivity extends ListActivity {
     		startService(cssBg);
     		
         }
-        
+               
         mConnection = new ServiceConnection() {
             public void onServiceConnected(ComponentName className, IBinder service) {
+            	Log.d("ServiceConnection","before mService");
                 mService = new Messenger(service);
+                Log.d("ServiceConnection","before mIsBound");
                 mIsBound = true;
                 try {
+                	Log.d("ServiceConnection","3");
                     Message msg = Message.obtain(null, Context_Service.MSG_REGISTER_CLIENT);
+                    Log.d("ServiceConnection","4");
                     msg.replyTo = mMessenger;
+                    Log.d("ServiceConnection","5");
                     mService.send(msg);
                 } catch (RemoteException e) {
                     // In this case the service has crashed before we could even do anything with it
@@ -169,15 +184,14 @@ public class ContextActivity extends ListActivity {
 
             public void onServiceDisconnected(ComponentName className) {
                 // This is called when the connection with the service has been unexpectedly disconnected - process crashed.
+            	Log.d("ServiceConnection","6");
             	mIsBound = false;
                 mService = null;
             }
         };
         
-        
-        //Bind to the service if it is already running
+      //Bind to the service if it is already running
         bindService(new Intent(this, Context_Service.class), mConnection, Context.BIND_AUTO_CREATE);
-        
 
         
         if(Context_Service.selected.size() > 0){
@@ -192,6 +206,19 @@ public class ContextActivity extends ListActivity {
         	adapter = null;
         }
         
+    }
+    
+    private void sendMessageToService(int message) {
+        if (mIsBound) {
+            if (mService != null) {
+            	try {
+                    Message msg = Message.obtain(null, message);
+                    msg.replyTo = mMessenger;
+                    mService.send(msg);
+                } catch (RemoteException e) {
+                }
+            }
+        }
     }
     
     

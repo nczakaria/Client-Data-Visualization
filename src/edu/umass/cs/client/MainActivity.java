@@ -46,6 +46,7 @@ public class MainActivity extends Activity {
 	private TextView accelXView, accelYView, accelZView;
 	private TextView statusView, stepsView, activityView;
 	private CompoundButton accelButton;
+
 	
 	/**
 	 * Messenger service for exchanging messages with the background service
@@ -160,8 +161,11 @@ public class MainActivity extends Activity {
         vizButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Log.d("debug", "HIT VIZ BUTTON");
 				Intent intent = new Intent(getApplicationContext(),ContextActivity.class);
+				
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+				Log.d("debug", "HIT VIZ BUTTON -- Before StartActivity");
 				startActivity(intent);
 			}
 		});

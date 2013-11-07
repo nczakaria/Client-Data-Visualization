@@ -30,6 +30,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.util.Log;
 import edu.umass.cs.accelerometer.*;
 
 /**
@@ -66,6 +67,9 @@ public class Context_Service extends Service implements SensorEventListener{
 
 	// List of bound clients/activities to this service
 	ArrayList<Messenger> mClients = new ArrayList<Messenger>();
+	
+	//store checked ids
+	public static ArrayList<Long> checkedItemList = new ArrayList<Long>();
 
 	// Message codes sent and received by the service
 	static final int MSG_REGISTER_CLIENT = 1;
@@ -306,6 +310,7 @@ public class Context_Service extends Service implements SensorEventListener{
 	public void onCreate() {
 		super.onCreate();
 		showNotification();
+		
 		isRunning = true;
 		sInstance = this;
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);

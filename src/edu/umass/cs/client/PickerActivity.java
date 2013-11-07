@@ -56,6 +56,8 @@ public class PickerActivity extends ListActivity {
 					long arg3) {
 			    //TODO:: store the selected items 
 				SparseBooleanArray sp = getListView().getCheckedItemPositions();
+				lv.getCheckedItemIds();
+//				Context_Service.checkedItemList
 				
 
                 //something about getCheckedItemIds
