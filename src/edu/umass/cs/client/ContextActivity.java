@@ -233,14 +233,17 @@ public class ContextActivity extends ListActivity {
     			   	widgets[i].setTitle("Raw Activity: ");
     			   	widgets[i].addOrRemoveTitleViewAsNecessary();
     				break;
-//    			case VOICE:
-//    				//TODO::
-//    				break;
-//    			case ACT1:
-//    			case ACT2:
-//    			case ACT3:
-//    				//TODO::
-//    				break;
+    			case STEPS:
+    				
+    				//
+    				break;
+    			case ACT1:
+    				break;
+    			case ACT2:
+    				break;
+    			case ACT3:
+    				break;
+
 
     		}
     	}

@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -30,8 +29,9 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.util.Log;
-import edu.umass.cs.accelerometer.*;
+import edu.umass.cs.accelerometer.ActivityFeatureExtractor;
+import edu.umass.cs.accelerometer.Filter;
+import edu.umass.cs.accelerometer.ReorientAxis;
 
 /**
  * 
@@ -90,7 +90,7 @@ public class Context_Service extends Service implements SensorEventListener{
 	private static final int NOTIFICATION_ID = 777;
 	
 	//needed for ContextActivity class
-	public static List<Integer> selected;
+	public static List<Integer> selected = new LinkedList<Integer>();
 	public static LinkedList<Integer> raw_activity_history;
 
 	/**
@@ -159,6 +159,9 @@ public class Context_Service extends Service implements SensorEventListener{
 		}
 	}
 
+	static void insertItems() {
+		
+	}
 	private void sendMessageToUI(int message) {
 		for (int i = mClients.size() - 1; i >= 0; i--) {
 			try {

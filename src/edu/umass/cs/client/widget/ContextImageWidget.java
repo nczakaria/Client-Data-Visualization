@@ -16,17 +16,17 @@ import java.util.LinkedList;
  */
 public class ContextImageWidget extends WidgetBase
 {
-	private static final String LOG_TAG = "ContextWidget";
-	private static final int CONTAINER_ID=35;
-	private static final int IMAGE_ID=40;
-	private static final int HISTORY_ID=50;
+	protected static final String LOG_TAG = "ContextWidget";
+	protected static final int CONTAINER_ID=35;
+	protected static final int IMAGE_ID=40;
+	protected static final int HISTORY_ID=50;
     
-	private RelativeLayout container;
-	private ImageView image_view;
+	protected RelativeLayout container;
+	protected ImageView image_view;
 	
 	public RollingHistoryView history_view;
 	
-	private String value;
+	protected String value;
 	
 	
 	public ContextImageWidget(Context context,int numStates, LinkedList<Integer> history) {
@@ -43,7 +43,7 @@ public class ContextImageWidget extends WidgetBase
 			history_view.setHistory(history);	
 		}
 		this.history_view.setId(HISTORY_ID);
-    	LayoutParams params =new RelativeLayout.LayoutParams(
+		LayoutParams params =new RelativeLayout.LayoutParams(
 				ViewGroup.LayoutParams.FILL_PARENT,
 				ViewGroup.LayoutParams.FILL_PARENT);
     	params.addRule(RelativeLayout.BELOW,CONTAINER_ID);
@@ -105,7 +105,7 @@ public class ContextImageWidget extends WidgetBase
     public void setImage(String label){
     	if(label.equals("STATIONARY")){
 //    		image_view.setImageResource(R.drawable.stat);
-    	} else if(label.equals("DRIVE")){
+    	} else if(label.equals("JUMPING")){
 //    		image_view.setImageResource(R.drawable.drive);
     	} else if(label.equals("WALK")){
 //    		image_view.setImageResource(R.drawable.walk);
@@ -138,16 +138,16 @@ public class ContextImageWidget extends WidgetBase
     
     public static class RollingHistoryView extends View{
 
-		private static final int SIZE = 60;
-		private static final int DOT = 3;
+    	protected static final int SIZE = 60;
+    	protected static final int DOT = 3;
 		
-		private static final int HEIGHT = 60;
+    	protected static final int HEIGHT = 60;
 		
-		public int numStates = 0;
-    	private LinkedList<Integer> history = new LinkedList<Integer>();
-    	private   Paint paint = new Paint();
+    	protected int numStates = 0;
+    	protected LinkedList<Integer> history = new LinkedList<Integer>();
+    	protected   Paint paint = new Paint();
     	
-    	private int parentWidth = 0;
+    	protected int parentWidth = 0;
     	
     	
     	public RollingHistoryView(Context context) {
@@ -190,8 +190,6 @@ public class ContextImageWidget extends WidgetBase
     		int prevX = -1;
     		int prevY= -1;
     		for(Integer state : history){
-//		    int y = 0; // TODO:: compute what the y coordinate has to be as a function of numStates,HEIGHT,state
-    			//below is from class 
 		    int y = (numStates * HEIGHT - HEIGHT/2) - state * HEIGHT;
 		    canvas.drawCircle(xoffset,y,DOT,paint);
 		    if (prevX >0  && prevY >0){

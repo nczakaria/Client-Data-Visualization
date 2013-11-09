@@ -52,24 +52,29 @@ public class PickerActivity extends ListActivity {
         lv.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long arg3) {
 			    //TODO:: store the selected items 
-				SparseBooleanArray sp = getListView().getCheckedItemPositions();
-				lv.getCheckedItemIds();
-//				Context_Service.checkedItemList
+				SparseBooleanArray a = lv.getCheckedItemPositions();
+				ArrayList<Integer> selected = new ArrayList<Integer>();
+				for(int i = 0; i< values.length; i++){
+					if (a.get(i)){
+						Log.d(TAG, "stored: " + i);
+						selected.add(i);
+					}
+				}
 				
+				Context_Service.selected = selected;
 
-                //something about getCheckedItemIds
 			}
 			
-        	
-        });         
+        });  
         
-	//TODO:: preselect items if anything has previously been selected
-        //this is wrong
-        lv.setItemChecked(1, true);
-        //i think setItemChecked
+        for(int i : Context_Service.selected){
+        	lv.setItemChecked(i, true);
+        }
+        
+
     }
     
     @Override
